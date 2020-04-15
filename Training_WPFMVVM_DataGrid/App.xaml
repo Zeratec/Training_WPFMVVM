@@ -1,0 +1,19 @@
+﻿<Application x:Class="Training_WPFMVVM_DataGrid.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Training_WPFMVVM_DataGrid"
+             xmlns:uc="clr-namespace:Training_WPFMVVM_DataGrid.Views.UserControlViews"
+             xmlns:vmuc="clr-namespace:Training_WPFMVVM_DataGrid.ViewModels.UserControlViewModels"
+             StartupUri="Views/MainWindow.xaml">
+    
+    <Application.Resources>
+        <!-- Ressources Couleur -->
+        <SolidColorBrush x:Key="BackgroundColorWhite" Color="White" />
+
+        <!-- Ressources Template -->
+        <DataTemplate x:Name="DataGridDataTemplate" DataType="{x:Type vmuc:DataGridViewModel}">
+            <uc:DataGridView DataContext="{Binding}"/>
+        </DataTemplate>
+        
+    </Application.Resources>
+</Application>
