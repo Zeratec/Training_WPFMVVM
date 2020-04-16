@@ -23,10 +23,9 @@
             <Label Margin="5" Content="Nb item" />
             <TextBlock  Margin="5" Text="{Binding DataGridSource.Count}"  VerticalAlignment="Center"/>
         </StackPanel>
-        
-        <DataGrid Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" CanUserAddRows="True" ItemsSource="{Binding DataGridSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem}">
+
+        <DataGrid Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" CanUserAddRows="True" ItemsSource="{Binding DataGridSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Converter={StaticResource Converter}}">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="50" Header="Id" IsReadOnly="False" Binding="{Binding ID}" />
                 <DataGridTextColumn Width="*" Header="Firstname" IsReadOnly="False" Binding="{Binding Firstname}" />
                 <DataGridTextColumn Width="*" Header="Lastname" IsReadOnly="False" Binding="{Binding Lastname}" />
                 <DataGridTextColumn Width="*" Header="Age" IsReadOnly="False" Binding="{Binding Age}" />

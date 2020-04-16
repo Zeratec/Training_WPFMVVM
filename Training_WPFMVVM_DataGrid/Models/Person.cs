@@ -5,17 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Training_WPFMVVM_DataGrid.Utils;
+using Training_WPFMVVM_DataGrid.ViewModels;
+using Training_WPFMVVM_DataGrid.ViewModels.UserControlViewModels;
 
 namespace Training_WPFMVVM_DataGrid.Models
 {
-    public class Person : ViewModelBase /*, IEditableObject*/
+    public class Person : ViewModelBase
     {
         #region Variable
         private string _id;
         private string _lastname;
         private string _firstname;
         private string _age;
-        //private bool inTxn = false;
         #endregion Variable
 
         #region Constructor
@@ -80,23 +81,6 @@ namespace Training_WPFMVVM_DataGrid.Models
         #endregion Properties
 
         #region Public Method
-        //public void BeginEdit() { inTxn = true; }
-
-        //public void CancelEdit() { }
-
-        //public void EndEdit()
-        //{
-        //    if (inTxn)
-        //    {
-        //        Console.WriteLine($"[Persons]\t" +
-        //            $"ID :{this.ID}\t " +
-        //            $"Firstname : {this.Firstname}\t " +
-        //            $"Lastname : {this.Lastname}\t " +
-        //            $"Age : {this.Age}\t " +
-        //            $"> Modified.");
-        //        inTxn = false;
-        //    }
-        //}
         #endregion Public Method
 
         #region Private Method

@@ -4,11 +4,15 @@
              xmlns:local="clr-namespace:Training_WPFMVVM_DataGrid"
              xmlns:uc="clr-namespace:Training_WPFMVVM_DataGrid.Views.UserControlViews"
              xmlns:vmuc="clr-namespace:Training_WPFMVVM_DataGrid.ViewModels.UserControlViewModels"
+             xmlns:cv="clr-namespace:Training_WPFMVVM_DataGrid.Services"
              StartupUri="Views/MainWindow.xaml">
     
     <Application.Resources>
         <!-- Ressources Couleur -->
         <SolidColorBrush x:Key="BackgroundColorWhite" Color="White" />
+
+        <!-- Ressources Converter -->
+        <cv:ConverterService x:Key="Converter"/>
 
         <!-- Ressources Template -->
         <DataTemplate x:Name="DataGridDataTemplate" DataType="{x:Type vmuc:DataGridViewModel}">
