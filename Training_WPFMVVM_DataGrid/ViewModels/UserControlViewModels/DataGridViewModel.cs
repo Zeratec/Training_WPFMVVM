@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,18 @@ namespace Training_WPFMVVM_DataGrid.ViewModels.UserControlViewModels
         #endregion Constructor
 
         #region Properties
-        public ObservableCollection<object> DataGridSource { get; set; } = null;
+        private ObservableCollection<object> _dataGridSource = null;
+        public ObservableCollection<object> DataGridSource
+        {
+            get 
+            { 
+                return _dataGridSource;
+            }
+            set 
+            { 
+                _dataGridSource = value;
+            }
+        }
 
         private Person _selectedItem;
         public Person SelectedItem
@@ -57,49 +69,67 @@ namespace Training_WPFMVVM_DataGrid.ViewModels.UserControlViewModels
             }
         }
 
-        public void AddItems(List<object> itemsToAdd)
+        private void AddItems(List<object> itemsToAdd)
         {
-            foreach (var item in itemsToAdd)
+            foreach (Person item in itemsToAdd)
             {
-                Console.WriteLine($"{item} added.");
+                Console.WriteLine($"[Persons]\t" +
+                $"ID :{item.ID}\t " +
+                $"Firstname : {item.Firstname}\t " +
+                $"Lastname : {item.Lastname}\t " +
+                $"Age : {item.Age}\t " +
+                $"> added.");
             }
         }
 
-        public void ModifyItems(List<object> itemsToModify)
+        private void ModifyItems(List<object> itemsToModify)
         {
-            foreach (var item in itemsToModify)
+            foreach (Person item in itemsToModify)
             {
-                Console.WriteLine($"{item} modified.");
+                Console.WriteLine($"[Persons]\t" +
+                $"ID :{item.ID}\t " +
+                $"Firstname : {item.Firstname}\t " +
+                $"Lastname : {item.Lastname}\t " +
+                $"Age : {item.Age}\t " +
+                $"> modified.");
             }
         }
 
-        public void DeleteItems(List<object> itemsToDelete)
+        private void DeleteItems(List<object> itemsToDelete)
         {
-            foreach (var item in itemsToDelete)
+            foreach (Person item in itemsToDelete)
             {
-                Console.WriteLine($"{item} removed.");
+                Console.WriteLine($"[Persons]\t" +
+                $"ID :{item.ID}\t " +
+                $"Firstname : {item.Firstname}\t " +
+                $"Lastname : {item.Lastname}\t " +
+                $"Age : {item.Age}\t " +
+                $"> removed.");
             }
         }
         #endregion Public Method
 
         #region Private Method
-        private void _dataGridSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void _dataGridSource_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             List<object> list = new List<object>();
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+
+            if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                list.AddRange((List<object>)e.NewItems);
-                this.AddItems(list);
+                list.AddRange(e.NewItems.Cast<object>().ToList());
+                AddItems(list);
             }
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
+
+
+            if (e.Action == NotifyCollectionChangedAction.Replace)
             {
-                list.AddRange((List<object>)e.NewItems);
-                this.ModifyItems(list);
+                ModifyItems(e.NewItems.Cast<object>().ToList());
             }
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+
+            //Fonction Delete Fonctionne
+            if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                list.AddRange((List<object>)e.NewItems);
-                this.DeleteItems(list);
+                DeleteItems(e.OldItems.Cast<object>().ToList());
             }
         }
         #endregion Private Method
