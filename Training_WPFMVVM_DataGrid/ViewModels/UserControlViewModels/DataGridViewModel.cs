@@ -114,24 +114,32 @@ namespace Training_WPFMVVM_DataGrid.ViewModels.UserControlViewModels
         {
             List<object> list = new List<object>();
 
-            if (e.Action == NotifyCollectionChangedAction.Add)
+            switch (e.Action)
             {
-                list.AddRange(e.NewItems.Cast<object>().ToList());
-                AddItems(list);
-            }
+                case NotifyCollectionChangedAction.Add:
+                    list.AddRange(e.NewItems.Cast<object>().ToList());
+                    AddItems(list);
+                    break;
 
+                case NotifyCollectionChangedAction.Move:
+                    break;
 
-            if (e.Action == NotifyCollectionChangedAction.Replace)
-            {
-                ModifyItems(e.NewItems.Cast<object>().ToList());
-            }
+                //Fonction Delete Fonctionne
+                case NotifyCollectionChangedAction.Remove:
+                    DeleteItems(e.OldItems.Cast<object>().ToList());
+                    break;
 
-            //Fonction Delete Fonctionne
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                DeleteItems(e.OldItems.Cast<object>().ToList());
+                case NotifyCollectionChangedAction.Replace:
+                    ModifyItems(e.OldItems.Cast<object>().ToList());
+                    break;
+
+                case NotifyCollectionChangedAction.Reset:
+                    break;
+
+                default:
+                    throw new NotImplementedException();
             }
+            #endregion Private Method
         }
-        #endregion Private Method
     }
 }
