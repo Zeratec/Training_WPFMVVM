@@ -37,7 +37,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Firstname" IsReadOnly="False" Binding="{Binding Firstname}"/>
                 <DataGridTextColumn Width="*" Header="Lastname" IsReadOnly="False" Binding="{Binding Lastname}"/>
-                <DataGridTextColumn Width="*" Header="Age" IsReadOnly="False" Binding="{Binding Age}"/>
+                <DataGridTextColumn Width="*" Header="Age" IsReadOnly="False" Binding="{Binding Age}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
